@@ -2,62 +2,74 @@ export const CategoryData = [
     {
         id:1,
         img:'https://cdn01.pharmeasy.in/dam/discovery/categoryImages/f10917087a483040b557e4b18204312c.png?f=png?dim=360x0',
-        title:'First',
+        title:'Immunity Booster',
+        cat:'Immunity',
     },
     {
         id:2,
         img:'https://cdn01.pharmeasy.in/dam/discovery/categoryImages/1e622b0308ec3ab48887512eaa3488a5.png?f=png?dim=360x0',
-        title:'Second',
+        title:'Personal Care',
+        cat:'Personal Care',
     },
     {
         id:3,
         img:'https://cdn01.pharmeasy.in/dam/discovery/categoryImages/fa936f30b4563fc4abd187fb22fe5258.png?f=png?dim=360x0',
         title:'Elderly Care',
+        cat:'Personal Care',
     },
     {
         id:4,
         img:'https://cdn01.pharmeasy.in/dam/discovery/categoryImages/9cc9a28ea4513009966cae794114eefd.png?f=png?dim=360x0',
         title:'HealthCare Devices',
+        cat:'HealthCare Devices',
     },
     {
         id:5,
         img:'https://cdn01.pharmeasy.in/dam/discovery/categoryImages/154dec0567b23244b7dcbf2158d39eee.png?f=png?dim=360x0',
         title:'Body Care',
+        cat:'Body Care',
     },
     {
         id:6,
         img:'https://cdn01.pharmeasy.in/dam/discovery/categoryImages/f692f7243b8036ed97d99a7973dd42b3.png?f=png?dim=360x0',
         title:'Child Care',
+        cat:'Child Care',
     },
     {
         id:7,
         img:'https://cdn01.pharmeasy.in/dam/discovery/categoryImages/4405b7900b0b34fcb5c8572aae9d4b2e.png?f=png?dim=360x0',
         title:'Mask & Sanitizers',
+        cat:'Masks',
     },
     {
         id:8,
         img:'https://cdn01.pharmeasy.in/dam/discovery/categoryImages/514d0d7d01a63502b4ebfec9ae26f4d2.png?f=png?dim=360x0',
         title:'Supplements',
+        cat:'Supplements',
     },
     {
         id:9,
         img:'https://cdn01.pharmeasy.in/dam/discovery/categoryImages/af7a9b53ad1239659615c6895b0972d7.png?f=png?dim=360x0',
         title:'Sexual Wellness',
+        cat:'SexualWellness',
     },
     {
         id:10,
         img:'https://cdn01.pharmeasy.in/dam/discovery/categoryImages/0e9899131915330ab1655af24876b0b6.png?f=png?dim=360x0',
         title:'Matress',
+        cat:'Matress',
     },
     {
         id:11,
         img:'https://cdn01.pharmeasy.in/dam/discovery/categoryImages/105ceca515ee30509f93309ae75306aa.png?f=png?dim=360x0',
         title:'Sports Supplements',
+        cat:'Sports',
     },
     {
         id:12,
         img:'https://cdn01.pharmeasy.in/dam/discovery/categoryImages/b1a199bf20a9325798872b8685114856.png?f=png?dim=360x0',
         title:'General Care',
+        cat:'General Care',
     },
 ]
 
@@ -150,3 +162,77 @@ export const Offers = [
     },
     
 ]
+
+export const productsdata = [
+    {
+        id:'1',
+        img:'https://cms-contents.pharmeasy.in/carousel_item/6bb2fe92d6f-CERAVE.png?dim=1440x0',
+        title:'CeraVe'
+        
+    },
+    {
+        id:'2',
+        img:'https://cms-contents.pharmeasy.in/carousel_item/6bb2fe92d6f-CERAVE.png?dim=1440x0',
+        title:'CeraVe'
+    },
+    {
+        id:'3',
+        img:'https://cms-contents.pharmeasy.in/carousel_item/6bb2fe92d6f-CERAVE.png?dim=1440x0',
+        title:'CeraVe'
+    },
+    {
+        id:'4',
+        img:'https://cms-contents.pharmeasy.in/carousel_item/6bb2fe92d6f-CERAVE.png?dim=1440x0',
+        title:'CeraVe'
+    },
+    {
+        id:'5',
+        img:'https://cms-contents.pharmeasy.in/carousel_item/6bb2fe92d6f-CERAVE.png?dim=1440x0',
+        title:'CeraVe'
+    },
+    {
+        id:'6',
+        img:'https://cms-contents.pharmeasy.in/carousel_item/6bb2fe92d6f-CERAVE.png?dim=1440x0',
+        title:'CeraVe'
+    },
+    {
+        id:'7',
+        img:'https://cms-contents.pharmeasy.in/carousel_item/6bb2fe92d6f-CERAVE.png?dim=1440x0',
+        title:'CeraVe'
+    },
+    {
+        id:'8',
+        img:'https://cms-contents.pharmeasy.in/carousel_item/6bb2fe92d6f-CERAVE.png?dim=1440x0',
+        title:'CeraVe'
+    },
+    {
+        id:'9',
+        img:'https://cms-contents.pharmeasy.in/carousel_item/6bb2fe92d6f-CERAVE.png?dim=1440x0',
+        title:'CeraVe'
+    },
+    {
+        id:'10',
+        img:'https://cms-contents.pharmeasy.in/carousel_item/6bb2fe92d6f-CERAVE.png?dim=1440x0',
+        title:'CeraVe'
+    },
+    {
+        id:'11',
+        img:'https://cms-contents.pharmeasy.in/carousel_item/6bb2fe92d6f-CERAVE.png?dim=1440x0',
+        title:'CeraVe'
+    },
+    {
+        id:'12',
+        img:'https://cms-contents.pharmeasy.in/carousel_item/6bb2fe92d6f-CERAVE.png?dim=1440x0',
+        title:'CeraVe'
+    },
+    {
+        id:'13',
+        img:'https://cms-contents.pharmeasy.in/carousel_item/6bb2fe92d6f-CERAVE.png?dim=1440x0',
+        title:'CeraVe'
+    },
+    {
+        id:'14',
+        img:'https://cms-contents.pharmeasy.in/carousel_item/6bb2fe92d6f-CERAVE.png?dim=1440x0',
+        title:'CeraVe'
+    },
+];
