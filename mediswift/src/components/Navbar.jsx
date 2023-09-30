@@ -9,7 +9,7 @@ import {
 } from "@mui/icons-material";
 import Logo from "../images/Logo.png";
 import { Badge } from "@mui/material";
-
+import { Link } from "react-router-dom";
 const Container = styled.div`
   position: relative;
 `;
@@ -123,17 +123,23 @@ const Navbar = () => {
           </DeliveryPin>
         </Center>
         <Right>
-          <Button>Register</Button>
-          <Button>Login</Button>
+          <Link to="/register">
+            <Button>Register</Button>
+          </Link>
+          <Link to="/login">
+            <Button>Login</Button>
+          </Link>
           <Profile>
             <AccountCircle />
             <Name>Nilesh</Name>
           </Profile>
-          <Cart>
-            <Badge badgeContent={2} color="primary">
-              <ShoppingCart />
-            </Badge>
-          </Cart>
+          <Link to="/cart">
+            <Cart>
+              <Badge badgeContent={2} color="primary">
+                <ShoppingCart />
+              </Badge>
+            </Cart>
+          </Link>
         </Right>
       </Wrapper>
     </Container>
