@@ -6,6 +6,7 @@ import Register from "./pages/Register";
 import LabTests from "./pages/LabTests";
 import Cart from "./pages/Cart";
 import Singleproduct from "./pages/Singleproduct";
+import MultipleShops from "./pages/MultipleShops";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/labtests" element={<LabTests />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/nearbypharmacies" element={<MultipleShops />} />
       </Routes>
     </Router>
   );
