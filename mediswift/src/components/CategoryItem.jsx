@@ -38,7 +38,7 @@ const imgborder = itemType === 'Offers' ? 'none' : '1px solid lightgrey';
 
   return (
     <Container>
-      <Link to={`/products/${item.cat}`}>
+      <Link to={`/products`}>
         <Wrapper>
           <Item>
             <Img src={item.img} style={{ width: imgWidth, border: imgborder,"border-radius":'10px'}} />  
