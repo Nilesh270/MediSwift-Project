@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import demoimg from '../images/demoimg.png'
 import { FavoriteBorder, ShoppingBagRounded, Star } from '@mui/icons-material';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { useLocation } from 'react-router-dom';
+import { publicRequest } from '../ResponseMethod';
 
 
 const Container = styled.div`
@@ -159,24 +160,42 @@ const StockLine = styled.p`
 `
 
 
-const Product = () => {
+const Singleproduct = () => {
+    const location =useLocation();
+    const id = location.pathname.split("/")[2];
+    const [product,setProduct]=useState({});
+    // const [quantity,setQuantity]=useState(1);
+
+    useEffect(()=>{
+        const getProduct = async ()=>{
+            try{
+                const res = await publicRequest.get("/products/find/"+id);
+                setProduct(res.data);
+            }
+            catch(err){
+
+            }
+        }
+    getProduct(); 
+    },[id])
+
   return (
     <>
     <Navbar/>
     <Container>
         <Wrapper>
             <ImageContainer>
-                <Image src={demoimg} />
+                <Image src={product.img} />
             </ImageContainer>
             <InfoContainer>
-                <Title>Roadster </Title>
+                <Title>{product.title} </Title>
                 <Desc>
-                    Maroon Stripped Casual Cotton Shirt
+                    {product.desc}
                 </Desc>
                 <Ratings>4.5 <Star/>| 912 Ratings</Ratings>
                 <Line/>
                 <Price>
-                    <Amount> ₹500</Amount>
+                    <Amount>{product.price}</Amount>
                     <Mrp> Mrp :₹1200</Mrp>
                 </Price>
                 <Taxes>inclusive of all Taxes</Taxes>
@@ -208,4 +227,4 @@ const Product = () => {
   )
 }
 
-export default Product
+export default Singleproduct;

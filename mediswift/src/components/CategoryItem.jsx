@@ -34,11 +34,12 @@ const Itemname = styled.div`
 const CategoryItem = ({item,itemType}) => {
 const imgWidth = itemType === 'Offers' ? '250px' : '150px';
 const imgborder = itemType === 'Offers' ? 'none' : '1px solid lightgrey';
-  
+
+
 
   return (
     <Container>
-      <Link to={`/products`}>
+      <Link to={`/products/${item.cat}`}>
         <Wrapper>
           <Item>
             <Img src={item.img} style={{ width: imgWidth, border: imgborder,"border-radius":'10px'}} />  

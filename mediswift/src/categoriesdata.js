@@ -9,7 +9,7 @@ export const CategoryData = [
         id:2,
         img:'https://cdn01.pharmeasy.in/dam/discovery/categoryImages/1e622b0308ec3ab48887512eaa3488a5.png?f=png?dim=360x0',
         title:'Personal Care',
-        cat:'Personal Care',
+        cat:'PersonalCare',
     },
     {
         id:3,

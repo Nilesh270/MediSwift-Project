@@ -8,7 +8,7 @@ import LabTests from "./pages/LabTests";
 import Cart from "./pages/Cart";
 import MultipleShops from "./pages/MultipleShops";
 import Products from "./pages/Products";
-// import Singleproduct from "./pages/Singleproduct";
+import Singleproduct from "./pages/Singleproduct";
 
 const App = () => {
 
@@ -22,7 +22,10 @@ const App = () => {
         <Route path="/labtests" element={<LabTests />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/nearbypharmacies" element={<MultipleShops />} />
-        <Route path="/products" element={<Products />} />
+        <Route path="/products/:category" element={<Products />} />
+        <Route path="/product/:id" element={<Singleproduct />} />
+        
+        
         
       </Routes>
     </Router>

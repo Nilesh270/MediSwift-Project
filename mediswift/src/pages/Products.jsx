@@ -1,37 +1,32 @@
 import React from 'react';
 import styled from 'styled-components';
-import CategoryItem from '../components/CategoryItem';
+import Product from '../components/Product';
 import Navbar from "../components/Navbar";
-import {productsdata}from "../categoriesdata"
 import Footer from '../components/Footer';
+// import { useState,useEffect } from 'react';
+
+import { useLocation } from 'react-router-dom';
+// import axios from 'axios';
+
 
 const Container = styled.div`
-    width:85%;
+    width:85%; 
     margin: 0 auto;
     
 `;
 
-const Wrapper = styled.div`
-    padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items:center;
-`;
+
 
 
 const Products = () => {
+  const location = useLocation();
+  const category = location.pathname.split("/")[2];
+  console.log(category);
   return (
     <>
     <Navbar/>
     <Container>
-        <Wrapper>
-        {
-            productsdata.map((item)=>(
-                <CategoryItem item={item} key={item.id} />
-            ))
-        }
-        </Wrapper>
+        <Product cat={category}/>
     </Container>
     <Footer/>
     </>
