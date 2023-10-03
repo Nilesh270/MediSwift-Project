@@ -61,10 +61,10 @@ router.get('/find/:id', async (req,res) => {
 
 
 // //Get all product
-router.get('/find/' ,async (req,res) => {
+router.get('/' ,async (req,res) => {
     try{
         const qnew = req.query.new;
-        const qCategory = req.query.category;
+        const qCategory = req.query.categories;
         let products ;
         if(qnew){
             products = await Product.find().sort({createdAt:-1}).limit(5);

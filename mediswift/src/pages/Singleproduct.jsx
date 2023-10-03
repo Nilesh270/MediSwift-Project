@@ -4,7 +4,9 @@ import { FavoriteBorder, ShoppingBagRounded, Star } from '@mui/icons-material';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { useLocation } from 'react-router-dom';
-import { publicRequest } from '../ResponseMethod';
+// import { publicRequest } from '../ResponseMethod';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 const Container = styled.div`
@@ -76,29 +78,7 @@ const Taxes= styled.div`
     font-weight:600;
 `;
 
-// const SizeWrapper= styled.div``
 
-// const Sizehead =styled.div`
-//     margin: 30px 0px;
-//     font-size:18px;
-//     font-weight:600;
-// `;
-
-// const Sizes = styled.div`
-//     display:flex;
-//     justify-content:flex-start;
-    
-// `;
-// const SizeList = styled.div`
-//     display:flex;
-//     justify-content:center;
-//     align-items:center;
-//     height:40px;
-//     width:40px;
-//     margin:0px 5px;
-//     border-radius:50%;
-//     border:1px solid lightgrey;
-// `;
 const Buttons = styled.div`
     display:flex;
     margin:30px 0px;
@@ -107,7 +87,8 @@ const Buttons = styled.div`
     
 `;
 const Add = styled.div`
-    flex:60%;
+    
+    width:20vw;
     margin-right:20px;
     display:flex;
     justify-content:center;
@@ -160,17 +141,19 @@ const StockLine = styled.p`
 `
 
 
-const Singleproduct = () => {
+const Singleproduct = (props) => {
     const location =useLocation();
     const id = location.pathname.split("/")[2];
+    console.log(id);
     const [product,setProduct]=useState({});
     // const [quantity,setQuantity]=useState(1);
 
     useEffect(()=>{
         const getProduct = async ()=>{
             try{
-                const res = await publicRequest.get("/products/find/"+id);
+                const res = await axios.get(`http://localhost:5000/api/products/find/`+id);
                 setProduct(res.data);
+                console.log(res.data);
             }
             catch(err){
 
@@ -195,15 +178,17 @@ const Singleproduct = () => {
                 <Ratings>4.5 <Star/>| 912 Ratings</Ratings>
                 <Line/>
                 <Price>
-                    <Amount>{product.price}</Amount>
-                    <Mrp> Mrp :₹1200</Mrp>
+                    <Amount>₹{product.price}</Amount>
+                    {/* <Mrp> Mrp :₹1200</Mrp> */}
                 </Price>
                 <Taxes>inclusive of all Taxes</Taxes>
                 <Buttons>
+                    <Link to={`/cart`}>
                     <Add> 
                         <ShoppingBagRounded/>
                         ADD TO CART
                     </Add>
+                    </Link>
                     <Wishlist>
                         <FavoriteBorder/>
                          WISHLIST

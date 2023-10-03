@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import CategoryItem from '../components/CategoryItem';
 // import { productsdata } from '../categoriesdata';
 import axios from 'axios';
+import ProductPageItem from './ProductPageItem';
 
 
 const Wrapper = styled.div`
@@ -21,7 +22,6 @@ const Product = (props) => {
             try{
                 const res = await axios.get(props.cat ? `http://localhost:5000/api/products?categories=${props.cat}`:"http://localhost:5000/api/products");
                 setProducts(res.data);
-                console.log(res.data);
             }
             catch(err){
                 console.log(err);
@@ -32,7 +32,7 @@ const Product = (props) => {
   return (
     <Wrapper>
         {  products.map((item) => (
-            <CategoryItem item={item} key={item.id} />
+            <ProductPageItem item={item} key={item._id} />
           ))}
     </Wrapper>
   )
