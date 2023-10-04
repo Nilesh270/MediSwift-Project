@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 
 
 const Container = styled.div`
-    height:100vh;
+    height:auto;
     background:#EAEDED;
     display:flex;
     justify-content:center;
@@ -25,6 +25,7 @@ const Left = styled.div`
     margin-right:10px;
     display:flex;
     flex-direction:column;
+    height:auto;
        
 `;
 const Address = styled.div`
@@ -212,7 +213,8 @@ const Order = styled.button`
 
 const Right = styled.div`
     flex:30%;
-    margin-left:10px;  
+    margin-left:10px; 
+    height:650px; 
 `;
 const PriceWrapper= styled.div`
     background:white;

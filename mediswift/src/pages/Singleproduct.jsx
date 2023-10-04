@@ -51,7 +51,7 @@ const Ratings = styled.div`
     display:flex;
     justify-content:center;
     align-items:center;
-    font-weight:200
+    font-weight:200;
 `
 
 const Price = styled.div`
