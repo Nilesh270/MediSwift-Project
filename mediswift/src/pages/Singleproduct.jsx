@@ -7,6 +7,8 @@ import { useLocation } from 'react-router-dom';
 // import { publicRequest } from '../ResponseMethod';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addProduct } from '../redux/cartRedux';
 
 
 const Container = styled.div`
@@ -65,12 +67,12 @@ const Amount = styled.div`
     font-weight:700;
     
 `;
-const Mrp = styled.div`
-    padding-left:20px;
-    color:#8A99A7;
-    font-weight:400;
-    text-decoration: line-through;
-`;
+// const Mrp = styled.div`
+//     padding-left:20px;
+//     color:#8A99A7;
+//     font-weight:400;
+//     text-decoration: line-through;
+// `;
 
 const Taxes= styled.div`
     color:green;
@@ -140,20 +142,53 @@ const StockLine = styled.p`
     color:grey;
 `
 
+const Button = styled.div`
+    display:flex;
+    align-items:center;
+    margin-right:20px;
+`;
+
+const Addicon =styled.button`
+    height:30px;
+    width:30px;
+    background:white;
+    border-radius:50%;
+    border:1px solid grey;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+    font-weight:700;
+    margin-right:10px;
+`;
+
+const Box = styled.div`
+    height:25px;
+    width:40px;
+    border:1px solid black;
+    font-size:18px;
+    font-weight:600;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-right:10px;
+
+`;
+
 
 const Singleproduct = (props) => {
     const location =useLocation();
     const id = location.pathname.split("/")[2];
     console.log(id);
     const [product,setProduct]=useState({});
-    // const [quantity,setQuantity]=useState(1);
+    const [quantity,setQuantity]=useState(1);
+    const dispatch = useDispatch();
 
     useEffect(()=>{
         const getProduct = async ()=>{
             try{
                 const res = await axios.get(`http://localhost:5000/api/products/find/`+id);
                 setProduct(res.data);
-                console.log(res.data);
             }
             catch(err){
 
@@ -161,6 +196,21 @@ const Singleproduct = (props) => {
         }
     getProduct(); 
     },[id])
+
+    const handleQuantity = (type) => {
+        if (type === "dec") {
+          quantity > 1 && setQuantity(quantity - 1);
+        } else {
+          setQuantity(quantity + 1);
+        }
+      };
+    
+
+    const handleClick= () =>{
+        dispatch(
+            addProduct({...product,quantity})
+        );
+    };
 
   return (
     <>
@@ -183,8 +233,13 @@ const Singleproduct = (props) => {
                 </Price>
                 <Taxes>inclusive of all Taxes</Taxes>
                 <Buttons>
+                <Button>
+                    <Addicon onClick={() => handleQuantity("inc")}>+</Addicon>
+                    <Box>{quantity}</Box>
+                    <Addicon onClick={() => handleQuantity("dec")}>-</Addicon>
+                </Button>
                     <Link to={`/cart`}>
-                    <Add> 
+                    <Add onClick={handleClick}> 
                         <ShoppingBagRounded/>
                         ADD TO CART
                     </Add>

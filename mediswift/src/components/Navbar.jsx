@@ -10,6 +10,12 @@ import {
 import Logo from "../images/Logo.png";
 import { Badge } from "@mui/material";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+
+
+
+
 const Container = styled.div`
   position: relative;
 `;
@@ -101,6 +107,8 @@ const Name = styled.div`
 `;
 
 const Navbar = () => {
+  const quantity = useSelector(state=> state.cart.quantity);
+  // console.log(quantity);
   return (
     <Container>
       <Wrapper>
@@ -135,7 +143,7 @@ const Navbar = () => {
           </Profile>
           <Link to="/cart">
             <Cart>
-              <Badge badgeContent={2} color="primary">
+              <Badge badgeContent={quantity} color="primary">
                 <ShoppingCart />
               </Badge>
             </Cart>

@@ -4,6 +4,7 @@ import demoimg from "../images/demoimg.png"
 import { DeleteOutline, FavoriteBorder, VerifiedUser } from '@mui/icons-material';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer'
+import { useSelector } from 'react-redux';
 
 
 const Container = styled.div`
@@ -269,6 +270,9 @@ const Security = styled.div`
 `;
 
 const Cart = () => {
+    const cart = useSelector((state) => state.cart);
+    console.log(cart);
+    // const quantity = useSelector((state)=> state.cart.quantity);
   return (
     <>
     <Navbar/>
@@ -280,22 +284,24 @@ const Cart = () => {
                     <Pincode>Enter Delivery Pincode  </Pincode>
                 </Address>
                 <Product>
+                   {cart.products.map((product)=>( 
+                
                     <Product1>
                         <ProductDetails>
-                            <Img src={demoimg} />
+                            <Img src={product.img} />
                             <Desc>
-                                <ProdTitle>Roadster Cotton Casual Shirt</ProdTitle>
-                                <Specs>Size:M | Mens</Specs>
-                                <Seller>Seller: Cloud Retailer</Seller>
+                                <ProdTitle>{product.title}</ProdTitle>
+                                {/* <Specs>Size:M | Mens</Specs> */}
+                                <Seller>id:{product._id}</Seller>
                                 <Price>
                                     <Mrp>₹ 2000</Mrp>
-                                    <SellingPrice>₹ 1200</SellingPrice>
+                                    <SellingPrice>₹{product.price*product.quantity}</SellingPrice>
                                     <Discount>40% Discount, 1 Coupon & 4 Offers applied</Discount>
                                 </Price>
                                 <Save>
                                     <Button>
-                                        <Add>+</Add>
-                                        <Box>1</Box>
+                                        <Add >+</Add>
+                                        <Box>{product.quantity}</Box>   
                                         <Sub>-</Sub>
                                     </Button>
                                     <Wishlist color='#FF527B'><FavoriteBorder/>Wishlist</Wishlist>
@@ -309,37 +315,10 @@ const Cart = () => {
                         </ProductDetails>
                         <Hr/>
                     </Product1>
-
-                    <Product1>
-                        <ProductDetails>
-                            <Img src={demoimg} />
-                            <Desc>
-                                <ProdTitle>Roadster Cotton Casual Shirt</ProdTitle>
-                                <Specs>Size:M | Mens</Specs>
-                                <Seller>Seller: Cloud Retailer</Seller>
-                                <Price>
-                                    <Mrp>₹ 2000</Mrp>
-                                    <SellingPrice>₹ 1200</SellingPrice>
-                                    <Discount>40% Discount, 1 Coupon & 4 Offers applied</Discount>
-                                </Price>
-                                <Save>
-                                    <Button>
-                                        <Add>+</Add>
-                                        <Box>1</Box>
-                                        <Sub>-</Sub>
-                                    </Button>
-                                    <Wishlist color='#FF527B'><FavoriteBorder/>Wishlist</Wishlist>
-                                    <Remove color='red  '><DeleteOutline/>Remove</Remove>
-                                </Save>
-                            </Desc>
-                            <Delivery>
-                                <DelText>Delivery by Thursday 10th Aug</DelText>
-                                <Fees>Free | <Cut>₹40</Cut></Fees>
-                            </Delivery>
-                        </ProductDetails>
-                        <Hr/>
-                    </Product1>
+                ))}
                 </Product>
+
+
                 <Placeorder>
                     <Order>Place Order</Order>
                 </Placeorder>
@@ -351,7 +330,7 @@ const Cart = () => {
                     <PriceSpec>
                         <PriceList>
                             <PriceDesc>Price (2items) </PriceDesc>
-                            <Amount >₹4000</Amount>
+                            <Amount >₹{cart.total}</Amount>
                         </PriceList>
                         <PriceList>
                             <PriceDesc>Discount</PriceDesc>
@@ -373,7 +352,7 @@ const Cart = () => {
                     <Hr1/>
                     <Total>
                         <TotalDesc>Total Amount</TotalDesc>
-                        <TotalAmt>₹2400</TotalAmt>
+                        <TotalAmt>₹{cart.total}</TotalAmt>
                     </Total>
                     <Hr1/>
                     <Savings>You will save ₹1600 on this order</Savings>
