@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Navbar from "../components/Navbar"
 import Loginlogo from '../images/Loginlogo.png'
 import { login } from '../redux/apiCalls';
-import { useDispatch,useSelector} from 'react-redux';
+import { useDispatch,useSelector  } from 'react-redux';
 
 
 const Container = styled.div`
@@ -79,7 +79,7 @@ const OtpBtn = styled.button`
   height:40px;
   width:100%;
   font-size:20px;
-  font-weigth:500;
+  font-weight:500;
   background:orange;
   border:none;
   border-radius:5px;

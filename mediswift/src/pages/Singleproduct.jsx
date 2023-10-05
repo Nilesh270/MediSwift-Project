@@ -179,7 +179,6 @@ const Box = styled.div`
 const Singleproduct = (props) => {
     const location =useLocation();
     const id = location.pathname.split("/")[2];
-    console.log(id);
     const [product,setProduct]=useState({});
     const [quantity,setQuantity]=useState(1);
     const dispatch = useDispatch();

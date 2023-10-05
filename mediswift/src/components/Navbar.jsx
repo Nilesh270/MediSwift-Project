@@ -10,7 +10,9 @@ import {
 import Logo from "../images/Logo.png";
 import { Badge } from "@mui/material";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch} from "react-redux";
+import { logout } from "../redux/userRedux";
+
 
 
 
@@ -108,7 +110,13 @@ const Name = styled.div`
 
 const Navbar = () => {
   const quantity = useSelector(state=> state.cart.quantity);
-  // console.log(quantity);
+  const user = useSelector(state=>state.user.currentUser);
+  console.log(user);
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout()); 
+  };
   return (
     <Container>
       <Wrapper>
@@ -131,16 +139,26 @@ const Navbar = () => {
           </DeliveryPin>
         </Center>
         <Right>
-          <Link to="/register">
-            <Button>Register</Button>
-          </Link>
-          <Link to="/login">
-            <Button>Login</Button>
-          </Link>
-          <Profile>
-            <AccountCircle />
-            <Name>Nilesh</Name>
-          </Profile>
+        {user ? (
+            // User is logged in, show Logout button
+            <>
+              <Button onClick={handleLogout}>Logout</Button>
+              <Profile>
+                <AccountCircle />
+                <Name>{user.name}</Name>
+              </Profile>
+            </>
+          ) : (
+            // User is not logged in, show Register and Login buttons
+            <>
+              <Link to="/register">
+                <Button>Register</Button>
+              </Link>
+              <Link to="/login">
+                <Button>Login</Button>
+              </Link>
+            </>
+          )}
           <Link to="/cart">
             <Cart>
               <Badge badgeContent={quantity} color="primary">
