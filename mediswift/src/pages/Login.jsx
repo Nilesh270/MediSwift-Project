@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState} from 'react';
 import styled from 'styled-components';
 import Navbar from "../components/Navbar"
 import Loginlogo from '../images/Loginlogo.png'
+import { login } from '../redux/apiCalls';
+import { useDispatch,useSelector} from 'react-redux';
 
 
 const Container = styled.div`
@@ -82,6 +84,7 @@ const OtpBtn = styled.button`
   border:none;
   border-radius:5px;
   color:white;
+  cursor:pointer;
 `;
 
 const Bottomline = styled.div`
@@ -94,9 +97,21 @@ const BotText = styled.p`
   color: blue;
   font-weight:500;
 `;
+const Error = styled.span`
+  color: red;
+`;
 
 
 const Login = () => {
+  const [username,setUsername] = useState("");
+  const [password,setPassword] = useState("");
+  const dispatch = useDispatch();
+  const { isFetching, error } = useSelector((state) => state.user);
+
+  const handleClick = (e) =>{
+    e.preventDefault()
+    login(dispatch,{ username,password})
+  }
   return (
     <Container>
       <Navbar/>
@@ -109,12 +124,13 @@ const Login = () => {
             </Left>
             <Right>
                 <DetailsWrapper>
-                  <Input placeholder='Enter Email/Mobile number'/>
+                  <Input placeholder='Enter Email/username' onChange={(e) => setUsername(e.target.value)}/>
                   <hr/>
-                  <Input placeholder='Enter password'/>
+                  <Input placeholder='Enter password'  onChange={(e) => setPassword(e.target.value)}/>
                   <hr/>
                   <Text>By continuing, you agree to MediSwift Terms of Use and Privacy Policy.</Text>
-                  <OtpBtn>Continue</OtpBtn>
+                  <OtpBtn onClick={handleClick} disabled={isFetching}>Continue</OtpBtn>
+                  {error && <Error>Something went wrong...</Error>}
                   <Bottomline>
                     <BotText>New to MediSwift? Create an Account</BotText>
                   </Bottomline>
