@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState}from "react";
 import styled from "styled-components";
 import "../index.css";
 import {
@@ -12,6 +12,8 @@ import { Badge } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useSelector,useDispatch} from "react-redux";
 import { logout } from "../redux/userRedux";
+import axios from "axios";
+import SearchDropDown from "../components/ShowDropDown"
 
 
 
@@ -111,9 +113,30 @@ const Name = styled.div`
 const Navbar = () => {
   const quantity = useSelector(state=> state.cart.quantity);
   const user = useSelector(state=>state.user.currentUser);
-  console.log(user);
   const dispatch = useDispatch();
+  const [searchInput, setSearchInput] = useState(""); // State to hold the search input value
+  const [searchResults, setSearchResults] = useState([]); // State to hold search results
+  const [showDropdown, setShowDropdown] = useState(false);
 
+
+  const handleSearch = async () => {
+    // Handle the search logic here, making an API call to fetch products based on searchInput
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/api/products/search?title=${searchInput}`
+      );
+      setSearchResults(response.data);
+      setShowDropdown(response.data.length > 0);
+    } catch (error) {
+      console.error("Error searching for products:", error);
+    }
+  };
+
+  const handleSearchIconClick = () => {
+    // Toggle the dropdown when the search icon is clicked
+    setShowDropdown((prevShowDropdown) => !prevShowDropdown);
+  };
+  
   const handleLogout = () => {
     dispatch(logout()); 
   };
@@ -124,13 +147,16 @@ const Navbar = () => {
           <Img src={Logo} />
         </Left>
         <Center>
-          <SearchWrapper>
+        <SearchWrapper>
             <SerachInput
               type="text"
               placeholder="Search Medicines/Healthcare Products"
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
             ></SerachInput>
-            <Search />
-          </SearchWrapper>
+            <Search onClick={handleSearch} />
+            {showDropdown && <SearchDropDown results={searchResults} />}
+        </SearchWrapper>
           <DeliveryPin>
             <ExpDel>Express Delivery to</ExpDel>
             <SelectPin>
@@ -168,6 +194,7 @@ const Navbar = () => {
           </Link>
         </Right>
       </Wrapper>
+            
     </Container>
   );
 };
