@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes,Navigate} from "react-router-dom";
 import Home from "./pages/Home";
 import Blogs from "./pages/Blogs";
 import Login from "./pages/Login";
@@ -9,15 +9,20 @@ import Cart from "./pages/Cart";
 import MultipleShops from "./pages/MultipleShops";
 import Products from "./pages/Products";
 import Singleproduct from "./pages/Singleproduct";
+import { useSelector } from "react-redux";
 
 const App = () => {
-
+  const user = useSelector(state => state.user.currentUser)
   return (
     <Router>
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+        {user ? (
+          <Route path="/login" element={<Navigate to="/" />} />
+        ) : (
+          <Route path="/login" element={<Login />} />
+        )}
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/labtests" element={<LabTests />} />
         <Route path="/cart" element={<Cart />} />
