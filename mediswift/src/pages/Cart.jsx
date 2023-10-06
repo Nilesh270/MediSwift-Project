@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
+import {useNavigate} from 'react-router-dom'
 import styled from 'styled-components';
-import demoimg from "../images/demoimg.png"
+// import demoimg from "../images/demoimg.png"
 import { DeleteOutline, FavoriteBorder, VerifiedUser } from '@mui/icons-material';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer'
 import { useSelector } from 'react-redux';
+import StripeCheckout from "react-stripe-checkout";
+import { userRequest } from '../RequestMethods';
+import cors from "cors";
 
+const KEY = "pk_test_51NvaZySCBtJ08adKz0kQshcPvz44QrjVKQO4BmTv0EcTHBUYFu4yfBpDbItpInJQYLrzriXO9AkW3YijcwgOANXH00Mo0oMPBI"
 
 const Container = styled.div`
     height:auto;
@@ -273,7 +278,29 @@ const Security = styled.div`
 
 const Cart = () => {
     const cart = useSelector((state) => state.cart);
+    const [stripeToken, setStripeToken] = useState(null);
+    const history = useNavigate();
+
+    const onToken = (token) =>{
+        setStripeToken(token);
+    };
+    useEffect(()=>{
+        const makeRequest = async () => {
+            try{
+                const res = await userRequest.post("/checkout/payment", {
+                    tokenId: stripeToken.id,
+                    amount: cart.total*100,
+                })
+                history.push("/sucess", {data: res.data});
+            }catch{
+
+            }
+        }
+        stripeToken && makeRequest();
+    }, [stripeToken, cart.total, history])
     console.log(cart);
+    // App.use(cors());
+    
     // const quantity = useSelector((state)=> state.cart.quantity);
   return (
     <>
@@ -322,7 +349,18 @@ const Cart = () => {
 
 
                 <Placeorder>
+                    <StripeCheckout
+                    name= "Medical Shop"
+                    billingAddress
+                    shippingAddress
+                    description= {`Your total is $${cart.total}`}
+                    amount={cart.total*100}
+                    token={onToken}
+                    stripeKey={KEY}
+                    >
                     <Order>Place Order</Order>
+                    </StripeCheckout>
+                    
                 </Placeorder>
             </Left>
             <Right>

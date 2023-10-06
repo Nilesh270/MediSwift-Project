@@ -9,6 +9,7 @@ import Cart from "./pages/Cart";
 import MultipleShops from "./pages/MultipleShops";
 import Products from "./pages/Products";
 import Singleproduct from "./pages/Singleproduct";
+import  Success  from "./pages/SuccessPage";
 
 const App = () => {
 
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/labtests" element={<LabTests />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/success" element={<Success />} />
         <Route path="/nearbypharmacies" element={<MultipleShops />} />
         <Route path="/products/:category" element={<Products />} />
         <Route path="/product/:id" element={<Singleproduct />} />
