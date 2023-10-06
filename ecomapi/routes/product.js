@@ -59,6 +59,19 @@ router.get('/find/:id', async (req,res) => {
     }   
 });
 
+//Get product by name
+router.get('/search', async (req, res) => {
+    try {
+      const productName = req.query.title;
+      console.log(productName);
+      const products = await Product.find({ title: { $regex: productName, $options: 'i' } });
+      console.log(products);
+      res.status(200).json(products);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
 
 // //Get all product
 router.get('/' ,async (req,res) => {

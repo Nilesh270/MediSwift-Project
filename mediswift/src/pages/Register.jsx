@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import Navbar from "../components/Navbar"
-import Loginlogo from '../images/Loginlogo.png'
+import Loginlogo from '../images/Loginlogo.png';
+import { useState } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 const Container = styled.div`
@@ -97,6 +100,35 @@ const Btn =styled.button`
 
 
 const Register = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    username: '',
+    email: '',
+    password: '',
+    isAdmin:'',
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post('http://localhost:5000/api/auth/register', formData);
+      console.log('Registration successful:', response.data);
+    } catch (error) {
+      console.error('Registration failed:', error);
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+
+
   return (
     <Container>
       <Navbar/>
@@ -110,17 +142,55 @@ const Register = () => {
             <Right>
                 <Title>CREATE ACCOUNT</Title>
                 <DetailsCont>
-                        <Text>Your Name</Text>
-                        <Input placeholder='First and last name' required/>
-                        <Text>Mobile number</Text>
-                        <Input placeholder='Mobile number' required/>
-                        <Text>Email id</Text>
-                        <Input />
-                        <Text>Password</Text>
-                        <Input placeholder='Atleast 8 characters' required/>
-                    <Terms><input type='checkbox' required/>  By Sign in on MediSwift you accept our Terms & Conditons</Terms>
-                    <Btn>Confirm</Btn>
-                    <Btn>Already have an Account? <a href="www.google.com">Login</a></Btn>
+                <form onSubmit={handleSubmit}>
+                    <Text>Your Name</Text>
+                    <Input
+                      name='name'
+                      placeholder='First and last name'
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                    />
+                    <Text>Username</Text>
+                    <Input
+                      name='username'
+                      placeholder='Enter username'
+                      value={formData.username}
+                      onChange={handleChange}
+                      required
+                    />
+                    <Text>Email id</Text>
+                    <Input
+                      name='email'
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                    />
+                    <Text>Password</Text>
+                    <Input
+                      name='password'
+                      placeholder='At least 8 characters'
+                      type='password'
+                      value={formData.password}
+                      onChange={handleChange}
+                      required
+                    />
+                    <Text>Is Admin</Text>
+                    <Input
+                      name='isAdmin'
+                      placeholder='Enter true or false'
+                      value={formData.isAdmin}
+                      onChange={handleChange}
+                      required
+                    />
+                    <Terms>
+                      <input type='checkbox' required /> By signing up on MediSwift you accept our Terms & Conditions
+                    </Terms>
+                    <Btn type='submit'>Confirm</Btn>
+                    <Btn>
+                     <Link to={`/login`}>Already have an Account? Login</Link> 
+                    </Btn>
+              </form>
                 </DetailsCont>
 
             </Right>

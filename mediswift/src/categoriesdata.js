@@ -1,33 +1,33 @@
 export const CategoryData = [
     {
         id:1,
-        img:'https://cdn01.pharmeasy.in/dam/discovery/categoryImages/f10917087a483040b557e4b18204312c.png?f=png?dim=360x0',
-        title:'Immunity Booster',
-        cat:'Immunity',
+        img:'https://assets.pharmeasy.in/apothecary/images/medicine_ff.webp?dim=720x0',
+        title:'Medicines',
+        cat:'Medicine',
     },
     {
         id:2,
-        img:'https://cdn01.pharmeasy.in/dam/discovery/categoryImages/1e622b0308ec3ab48887512eaa3488a5.png?f=png?dim=360x0',
-        title:'Personal Care',
-        cat:'PersonalCare',
+        img:'https://cdn01.pharmeasy.in/dam/discovery/categoryImages/f10917087a483040b557e4b18204312c.png?f=png?dim=360x0',
+        title:'Immunity',
+        cat:'Immunity',
     },
     {
         id:3,
         img:'https://cdn01.pharmeasy.in/dam/discovery/categoryImages/fa936f30b4563fc4abd187fb22fe5258.png?f=png?dim=360x0',
         title:'Elderly Care',
-        cat:'Personal Care',
+        cat:'ElderlyCare',
     },
     {
         id:4,
         img:'https://cdn01.pharmeasy.in/dam/discovery/categoryImages/9cc9a28ea4513009966cae794114eefd.png?f=png?dim=360x0',
         title:'HealthCare Devices',
-        cat:'HealthCare Devices',
+        cat:'HealthCareDevices',
     },
     {
         id:5,
         img:'https://cdn01.pharmeasy.in/dam/discovery/categoryImages/154dec0567b23244b7dcbf2158d39eee.png?f=png?dim=360x0',
         title:'Body Care',
-        cat:'Body Care',
+        cat:'BodyCare',
     },
     {
         id:6,

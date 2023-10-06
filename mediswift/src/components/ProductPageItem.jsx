@@ -28,7 +28,8 @@ const Item = styled.div`
       border-radius:10px;
 `;
 const Img = styled.img`
-    height:100%;
+    height:80%;
+    width:70%;
 `;
 const Itemname = styled.div`
    color:black; 
